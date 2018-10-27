@@ -1,59 +1,65 @@
 const Discord = require('discord.js'); // loads Discord
 const colors = require('colors'); // Loads colors
 const settings = require('./settings.json') // loads settings
+const fs = require('fs')
+const enmap = require('Enmap')
 const Bot = new Discord.Client(); // Defines Bot as a Discord Client
 const prefix = "&"; // Prefix
-// let Bot.commands = new Map();
 Bot.login(settings.token); // Logs Bot into Discord Servers
-// When the Bot is ready do this. V
-Bot.on('ready', () => {
-    Bot.user.setPresence({
-       game: {
-         name: '&',
-         url: "https://www.twitch.tv/monstercat"
-       },
-       status: 'STREAMING'
-      })
-    console.log(colors.cyan(`Hosting: ${Bot.guilds.size} server(s) \nMember Count: ${Bot.users.size} \nChannel Count: ${Bot.channels.size} \nStatus: STREAMING: & \nURL: ttv/monstercat`));
-    console.log(colors.green(`Bot is ready to receive commands!`));
+Bot.xpDB = new enmap({
+  name: "Experience Database"
+});
+Bot.xpDB.defer.then(() => {
+  console.log(colors.yellow("Experience Database has been loaded into memory!"))
 })
-// Message & Event Handler 
 
+// Event Handler
+fs.readdir("./events/", (err, files) => {
+  if (err) return console.error(err);
+  files.forEach(file => {
+    const event = require(`./events/${file}`);
+    let eventName = file.split(".")[0];
+    Bot.on(eventName, event.bind(null, Bot));
+  });
+});
+Bot.commands = new Map();
+Bot.permission = new Map();
+fs.readdir("./commands/", (err, files) => {
+  if (err) return console.error(err);
+  files.forEach(file => {
+    if (!file.endsWith(".js")) return;
+    let props = require(`./commands/${file}`);
+    let commandName = file.split(".")[0];
+    console.log(`Loaded command: ${commandName} ✓ `);
+    console.log(`Command Alias: ${JSON.stringify(props.help)}`)
+    Bot.commands.set(commandName, props);
+  });
+});
 Bot.on('message', message => {
-  // Handler
-    if(message.author.bot) return;
-  const args = message.content.slice(prefix.length).trim().split(/ +/g);
-  const command = args.shift().toLowerCase();
-  // Handler 2
-    console.log(`Message has been sent by ${message.author} with: ${message.content} `)
-    if(command === "emit") {
-    //  if(message.author != message.member.guild.owner) return;
-      if(!args[0]) {
-      return  message.channel.send('Enter Event.');
-    } else return Bot.emit(args[0], args[1]);
-  } else if (command === "userinfo") {
-      let id = message.author.id;
-      let user = message.author;
-      let avatar = user.avatarURL;
-      console.log(avatar)
-      let presence = JSON.parse(JSON.stringify(user.presence));
+  if(message.author.bot) return;
+  if(message.guild) {
+      let user = message.author.id;
+      const key = `${message.guild.id}-${message.author.id}`;
+      const curLevel = Math.floor(0.1 * Math.sqrt(Bot.xpDB.get(key, "points")));
 
-      console.log(presence)
-      let embed = new Discord.RichEmbed()
-      .setThumbnail(avatar)
-      .setAuthor("Automated Response", avatar)
-      .setTitle(`User Info for: ${message.author.username}`)
-      .addField("Basic Info",  `Username: ${message.author.username} \n \n ID: ${id} \n \n Discriminator: #${user.discriminator} \n \n Status: ${presence.status} \n \n Playing: ${presence.game.name} \n \n Joined Discord On: ${user.createdAt} \n`)
-      .addField("Guild Specific", "Coming Soon!")
-      .addField("XP System", "Coming Soon!")
-      .setFooter("Automated Response.");
-                    message.channel.send(embed)
+    // XP SYSTEM
+    // Bot.xpDB.set(user, {
+    //   level: 0,
+    //   xp: 1
+    // })
+    // Bot.xpDB is the enmap Database
+    if (Bot.xpDB.get(key, "level") < curLevel) {
+      message.reply(`You've leveled up to level **${curLevel}**!`);
+    }
+      console.log(user)
+    //  console.log(Bot.xpDB.get(user))
+
+    Bot.xpDB.ensure(key, {
+    user: message.author.id,
+    guild: message.guild.id,
+    points: 0,
+    level: 1
+  });
+  Bot.xpDB.inc(key, "points");
   }
 })
-
-Bot.on('guildMemberAdd', member => {
-    console.log(`${member} has joined the guild!`);
-  var channel = Bot.channels.find(c => c.type == "text" && c.name == "oofergang")
-  if(channel === "undefined") return console.console.log(colors.red('Encountered Error in guildMemberAdd'));
-    channel.send(`${member} has joined the Guild!`);
-});

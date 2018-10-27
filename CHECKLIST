@@ -1,9 +1,9 @@
 LOAD DISCORD.js [X]
 Make MessageHandler [X]
 Make GuildMember Event [X]
-Make XP system [] ON HOLD.
-Embeds []
-Event Handler []
+Make XP system [X] ON HOLD. EDIT: DONE
+Embeds [X]
+Event Handler [X]
 Weather API []
 Simple Music Bot []
 Canvas? Maybe.. []

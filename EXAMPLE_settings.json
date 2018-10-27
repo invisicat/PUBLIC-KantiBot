@@ -1,5 +1,7 @@
 {
   "token": TOKENHERE,
   "google_api_key": KEYHERE,
-  "weather_api_key": HERE
+  "weather_api_key": HERE,
+  "prefix": HERE,
+  "OwnerID": HERE
 }

@@ -17,9 +17,12 @@
   },
   "homepage": "https://github.com/AndyIsCool5463/PUBLIC-KantiBot#readme",
   "dependencies": {
+    "better-sqlite-pool": "^0.1.2",
     "colors": "^1.3.2",
     "discord.js": "^11.4.2",
     "enmap": "^4.3.3",
-    "node-gyp": "^3.8.0"
+    "node-gyp": "^3.8.0",
+    "sqlite": "^3.0.0",
+    "sqlite3": "^4.0.3"
   }
 }
