@@ -1,0 +1,25 @@
+{
+  "name": "public-kantibot",
+  "version": "1.0.0",
+  "description": "Discord Bot Public",
+  "main": "bot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AndyIsCool5463/PUBLIC-KantiBot.git"
+  },
+  "author": "AIC5463",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AndyIsCool5463/PUBLIC-KantiBot/issues"
+  },
+  "homepage": "https://github.com/AndyIsCool5463/PUBLIC-KantiBot#readme",
+  "dependencies": {
+    "colors": "^1.3.2",
+    "discord.js": "^11.4.2",
+    "enmap": "^4.3.3",
+    "node-gyp": "^3.8.0"
+  }
+}
