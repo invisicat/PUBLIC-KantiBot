@@ -18,7 +18,9 @@ exports.run = async (Bot, message, args) => {
       .setFooter("Automated Response.");
   message.channel.send(embed)
   }
-exports.help = {
-  name: "userInfo",
-  description: "Displays User Information"
-}
+  exports.help = {
+    name: "userinfo",
+    category: "Usefulness",
+    description: "Displays User Information",
+    alias: "None"
+  }

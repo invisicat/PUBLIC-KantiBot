@@ -12,5 +12,8 @@ console.log(oof)
   message.channel.send(oof)
 }
 exports.help = {
-  name: "test"
+  name: "lipsum",
+  category: "Developer",
+  description: "Gives Shit",
+  alias: "None"
 }

@@ -17,13 +17,22 @@ Bot.xpDB.defer.then(() => {
 fs.readdir("./events/", (err, files) => {
   if (err) return console.error(err);
   files.forEach(file => {
+    // If the file is not a JS file, ignore it (thanks, Apple)
+    if (!file.endsWith(".js")) return;
+    // Load the event file itself
     const event = require(`./events/${file}`);
+    // Get just the event name from the file name
     let eventName = file.split(".")[0];
+    // super-secret recipe to call events with all their proper arguments *after* the `client` var.
+    // without going into too many details, this means each event will be called with the client argument,
+    // followed by its "normal" arguments, like message, member, etc etc.
+    // This line is awesome by the way. Just sayin'.
     Bot.on(eventName, event.bind(null, Bot));
+    delete require.cache[require.resolve(`./events/${file}`)];
   });
 });
+// Command Handler
 Bot.commands = new Map();
-Bot.permission = new Map();
 fs.readdir("./commands/", (err, files) => {
   if (err) return console.error(err);
   files.forEach(file => {
@@ -32,7 +41,7 @@ fs.readdir("./commands/", (err, files) => {
     let commandName = file.split(".")[0];
     console.log(`Loaded command: ${commandName} ✓ `);
     console.log(`Command Alias: ${JSON.stringify(props.help)}`)
-    Bot.commands.set(commandName, props);
+    Bot.commands.set(props.help.name, props);
   });
 });
 Bot.on('message', message => {

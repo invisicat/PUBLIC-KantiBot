@@ -71,5 +71,8 @@ return new Canvas(934, 282)
 }
 
 exports.help = {
-  name: "Usercard"
+  name: "Usercard",
+  category: "Economy",
+  description: "Displays XP as a Card",
+  alias: "None"
 }

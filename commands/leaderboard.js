@@ -18,5 +18,8 @@ exports.run = async (Bot, message, args) => {
   return message.channel.send({embed});
 }
 exports.help = {
-  name: "leaderboard"
+  name: "leaderboard",
+  category: "Economy",
+  description: "Displays Top 10 Chatters!",
+  alias: "lb"
 }

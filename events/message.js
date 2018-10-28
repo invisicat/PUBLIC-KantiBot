@@ -11,12 +11,14 @@ const prefix = "&" ;
   const args = message.content.slice(prefix.length).trim().split(/ +/g);
   const command = args.shift().toLowerCase();
   // Grab the command data from the Bot.commands Enmap
-  const cmd = Bot.commands.get(command);
+  let cmd_map = Bot.commands.get(command)
+  var cmd = Bot.commands.get(command)
+
 
 
 
   // If that command doesn't exist, silently exit and do nothing
   if (!cmd) return;
   // Run the command
-  cmd.run(Bot, message, args);
+ cmd.run(Bot, message, args);
 };
