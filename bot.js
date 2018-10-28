@@ -17,16 +17,10 @@ Bot.xpDB.defer.then(() => {
 fs.readdir("./events/", (err, files) => {
   if (err) return console.error(err);
   files.forEach(file => {
-    // If the file is not a JS file, ignore it (thanks, Apple)
     if (!file.endsWith(".js")) return;
     // Load the event file itself
     const event = require(`./events/${file}`);
-    // Get just the event name from the file name
     let eventName = file.split(".")[0];
-    // super-secret recipe to call events with all their proper arguments *after* the `client` var.
-    // without going into too many details, this means each event will be called with the client argument,
-    // followed by its "normal" arguments, like message, member, etc etc.
-    // This line is awesome by the way. Just sayin'.
     Bot.on(eventName, event.bind(null, Bot));
     delete require.cache[require.resolve(`./events/${file}`)];
   });
@@ -51,17 +45,11 @@ Bot.on('message', message => {
       const key = `${message.guild.id}-${message.author.id}`;
       const curLevel = Math.floor(0.1 * Math.sqrt(Bot.xpDB.get(key, "points")));
 
-    // XP SYSTEM
-    // Bot.xpDB.set(user, {
-    //   level: 0,
-    //   xp: 1
-    // })
     // Bot.xpDB is the enmap Database
     if (Bot.xpDB.get(key, "level") < curLevel) {
       message.reply(`You've leveled up to level **${curLevel}**!`);
     }
       console.log(user)
-    //  console.log(Bot.xpDB.get(user))
 
     Bot.xpDB.ensure(key, {
     user: message.author.id,
