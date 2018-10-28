@@ -8,6 +8,9 @@ yarn-error.log*
 # User Defined
 settings.json
 data/
+enmap.sqlite
+enmap.sqlite-shm
+enmap.sqlite-wal
 # Runtime data
 pids
 *.pid
