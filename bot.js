@@ -24,9 +24,11 @@ fs.readdir("./events/", (err, files) => {
     Bot.on(eventName, event.bind(null, Bot));
     delete require.cache[require.resolve(`./events/${file}`)];
   });
+  console.log(colors.green(`Loaded ${files.length} events!`))
 });
 // Command Handler
-Bot.commands = new Map();
+Bot.commands = new enmap();
+Bot.aliases = new enmap();
 fs.readdir("./commands/", (err, files) => {
   if (err) return console.error(err);
   files.forEach(file => {
@@ -34,9 +36,11 @@ fs.readdir("./commands/", (err, files) => {
     let props = require(`./commands/${file}`);
     let commandName = file.split(".")[0];
     console.log(`Loaded command: ${commandName} ✓ `);
-    console.log(`Command Alias: ${JSON.stringify(props.help)}`)
+//    console.log(`Command Alias: ${props.help.alias}`)
     Bot.commands.set(props.help.name, props);
+    Bot.aliases.set(props.help.alias, props)
   });
+  console.log(colors.green(`Loaded ${files.length} commands!`))
 });
 Bot.on('message', message => {
   if(message.author.bot) return;
@@ -60,3 +64,4 @@ Bot.on('message', message => {
   Bot.xpDB.inc(key, "points");
   }
 })
+process.on('unhandledRejection', error => console.error('Uncaught Promise Rejection', error));

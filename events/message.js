@@ -12,13 +12,12 @@ const prefix = "&" ;
   const command = args.shift().toLowerCase();
   // Grab the command data from the Bot.commands Enmap
   let cmd_map = Bot.commands.get(command)
-  var cmd = Bot.commands.get(command)
-
-
-
-
+  var cmd = Bot.commands.get(command) || Bot.aliases.get(command);
+  if(cmd === "None") {
+    console.log(`Heh ${message.author} is a dumbfuck, he tried to use None as a command!`)
+  }
   // If that command doesn't exist, silently exit and do nothing
-  if (!cmd) return;
+  if (!cmd) return message.reply("That is not a valid command.");
   // Run the command
  cmd.run(Bot, message, args);
 };

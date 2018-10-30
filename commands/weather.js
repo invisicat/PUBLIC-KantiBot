@@ -4,6 +4,8 @@ const settings = require('../settings.json')
 const regex = /<|]/g;
 const regex1 = /<|]/g;
 exports.run = async (Bot, message, args) => {
+
+  if(!args[0]) return message.reply("Enter a city.")
   let argument = args.join(" ")
   console.log(argument)
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${argument}&units=imperial&appid=${settings.weather_api_key}`
