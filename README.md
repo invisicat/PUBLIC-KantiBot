@@ -3,7 +3,7 @@
 [![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)
 
 [![Build Status](https://travis-ci.org/AndyIsCool5463/PUBLIC-KantiBot.svg?branch=master)](https://travis-ci.org/AndyIsCool5463/PUBLIC-KantiBot)
-[![Dependencies]](https://david-dm.org/AndyIsCool5463/PUBLIC-KantiBot.svg)
+[![Dependencies](https://david-dm.org/AndyIsCool5463/PUBLIC-KantiBot.svg)](https://david-dm.org/)
 Discord Bot that's 100% modulable (soon) & has multiple commands to suit your needs.
   - Moderation
   - XP System
