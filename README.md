@@ -3,7 +3,7 @@
 [![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)
 
 [![Build Status](https://travis-ci.org/AndyIsCool5463/PUBLIC-KantiBot.svg?branch=master)](https://travis-ci.org/AndyIsCool5463/PUBLIC-KantiBot)
-
+[![Dependencies]](https://david-dm.org/AndyIsCool5463/PUBLIC-KantiBot.svg)
 Discord Bot that's 100% modulable (soon) & has multiple commands to suit your needs.
   - Moderation
   - XP System
@@ -39,7 +39,7 @@ Kanti Bot uses a number of open source projects to work properly:
 * [node.js] - evented I/O for the backend
 * [Express] - fast node.js network app framework [@tjholowaychuk]
 * [Discord.js] - Discord.js is a powerful node.js module that allows you to interact with the Discord API very easily.
-* [EJS] - EJS is a simple templating language that lets you generate HTML markup with plain JavaScript. 
+* [EJS] - EJS is a simple templating language that lets you generate HTML markup with plain JavaScript.
 
 
 And of course the Bot itself is open source with a [public repository][dill]
@@ -54,7 +54,7 @@ Install the dependencies and devDependencies and start the Bot.
 
 ```sh
 $ cd PUBLIC-KantiBot
-$ npm install 
+$ npm install
 $ nodemon bot.js
 ```
 
