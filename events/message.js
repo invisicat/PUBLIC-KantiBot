@@ -1,3 +1,6 @@
+const Util = require('discord.js')
+const ytdl = require('ytdl-core')
+const colors = require('colors')
 module.exports = (Bot, message, member) => {
 const prefix = "&" ;
   // Ignore all bots
@@ -16,6 +19,8 @@ const prefix = "&" ;
   if(cmd === "None") {
     console.log(`Heh ${message.author} is a dumbfuck, he tried to use None as a command!`)
   }
+
+
   // If that command doesn't exist, silently exit and do nothing
   if (!cmd) return message.reply("That is not a valid command.");
   // Run the command

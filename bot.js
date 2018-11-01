@@ -5,6 +5,7 @@ const fs = require('fs')
 const enmap = require('Enmap')
 const Bot = new Discord.Client(); // Defines Bot as a Discord Client
 const prefix = "&"; // Prefix
+const ytdl = require('ytdl-core');
 Bot.login(settings.token); // Logs Bot into Discord Servers
 Bot.xpDB = new enmap({
   name: "Experience Database"
@@ -52,8 +53,14 @@ Bot.on('message', message => {
     // Bot.xpDB is the enmap Database
     if (Bot.xpDB.get(key, "level") < curLevel) {
       message.reply(`You've leveled up to level **${curLevel}**!`);
+      Bot.xpDB.set(key, {
+        user: message.author.id,
+        guild: message.guild.id,
+        points: 0,
+        level: curLevel
+      });
     }
-      console.log(user)
+//      console.log(user)
 
     Bot.xpDB.ensure(key, {
     user: message.author.id,
@@ -64,4 +71,15 @@ Bot.on('message', message => {
   Bot.xpDB.inc(key, "points");
   }
 })
+
+
+
+
+// Music
+Bot.queue = new Map();
+Bot.on('message', message => {
+
+})
+
+
 process.on('unhandledRejection', error => console.error('Uncaught Promise Rejection', error));

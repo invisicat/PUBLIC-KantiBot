@@ -64,6 +64,8 @@ $ nodemon bot.js
 
  - Write MORE Tests
  - Add Night Mode
+ - Host on Glitch
+ - More TODOs on CHECKLIST
 
 License
 ----
