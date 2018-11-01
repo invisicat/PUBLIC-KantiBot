@@ -1,11 +1,10 @@
 # Kanti Bot
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/3096408ea0a84c49a72c715c0d45b335)](https://app.codacy.com/app/AndyIsCool5463/PUBLIC-KantiBot?utm_source=github.com&utm_medium=referral&utm_content=AndyIsCool5463/PUBLIC-KantiBot&utm_campaign=Badge_Grade_Dashboard)
 [![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)
 
 [![Build Status](https://travis-ci.org/AndyIsCool5463/PUBLIC-KantiBot.svg?branch=master)](https://travis-ci.org/AndyIsCool5463/PUBLIC-KantiBot)
 [![Dependencies](https://david-dm.org/AndyIsCool5463/PUBLIC-KantiBot.svg)](https://david-dm.org/)
-
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/3096408ea0a84c49a72c715c0d45b335)](https://app.codacy.com/app/AndyIsCool5463/PUBLIC-KantiBot?utm_source=github.com&utm_medium=referral&utm_content=AndyIsCool5463/PUBLIC-KantiBot&utm_campaign=Badge_Grade_Dashboard)
 
 Discord Bot that's 100% modulable (soon) & has multiple commands to suit your needs.
   - Moderation
