@@ -92,7 +92,7 @@ const options = {
 mode: 0o2775
 }
 fse.ensureDir(dirU, err => { //ensures that User Profile Dir is there, if not create the folder
-console.log(err) // => null
+console.log(err);// => null
 // dir has now been created, including the directory it is to be placed in
 });
 

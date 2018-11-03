@@ -17,13 +17,13 @@ Bot.warnings = new enmap({
   name: "Warnings Database"
 })
 Bot.xpDB.defer.then(() => {
-  console.log(colors.yellow("Experience Database has been loaded into memory!"))
+  console.log(colors.yellow("Experience Database has been loaded into memory!"));
 })
 Bot.administration.defer.then(() => {
-  console.log(colors.yellow("Administration Database has been loaded into memory!"))
+  console.log(colors.yellow("Administration Database has been loaded into memory!"));
 })
 Bot.warnings.defer.then(() => {
-  console.log(colors.yellow("Warning Database has been loaded into memory!"))
+  console.log(colors.yellow("Warning Database has been loaded into memory!"));
 })
 Bot.sayHi = 'oof';
 // Event Handler

@@ -8,7 +8,7 @@ let avatar = user.displayAvatarURL
   let embed = new Discord.RichEmbed()
               .setTitle("User Banned")
               .setThumbnail(avatar)
-              .addField("User:", `The user, ${user} has been banned from the ${guild}`)
+              .addField("User:", `The user, ${user} has been banned from the ${guild}`);
 //  modlog.send(`New Channel Created: ${channel}`).catch(console.error);
-modlog.send(embed).catch(console.error)
-}
+modlog.send(embed).catch(console.error);
+};

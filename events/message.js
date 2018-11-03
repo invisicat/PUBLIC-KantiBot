@@ -22,7 +22,7 @@ const prefix = "&" ;
   if (!cmd) return message.reply("That is not a valid command.");
   if(cmd.help.permission == 'None') {
     console.log("CONTINUING EXECUTION")
-  } else if(message.member.hasPermission(cmd.help.permission) == false) {
+  } else if(message.member.hasPermission(cmd.help.permission) === false) {
     return message.channel.send("You do not have permission to execute this command").catch(console.error)
   }
   // If that command doesn't exist, silently exit and do nothing

@@ -6,9 +6,9 @@ exports.run = async (Bot, message, args) => {
   if(!offender) return message.reply("Enter user.")
   let argument = args.join(" ");
    if(author.hasPermission("BAN_MEMBERS")) {
-        if(offender.bannable == false) return message.channel.send("You may not ban this person.").catch(console.error);
+        if(offender.bannable === false) return message.channel.send("You may not ban this person.").catch(console.error);
         // Kicking code starts HERE
-        offender.ban(argument).then(m => {
+        offender.ban(argument).then((m) => {
           message.reply(`${m} has been banned!`)
         }).catch(console.error);
 

@@ -17,7 +17,7 @@ exports.run = async (Bot, message, args) => {
     })
 
 
-    async function weatherhander(name, id, temp, humidity, wind_speed, country, main, statusCode) {
+    async function weatherhander(name, id, temp, humidity, windSpeed, country, main, statusCode) {
       let weather_name = main.map(c => {return c.main})
       let description = main.map(c => {return c.description})
       let icon = main.map(c => {return c.icon});
@@ -30,7 +30,7 @@ exports.run = async (Bot, message, args) => {
             .addField("Detailed", description)
             .addField("Temperature", temp)
             .addField(`Humidity`, humidity)
-            .addField(`Wind Speed`, wind_speed)
+            .addField(`Wind Speed`, windSpeed)
             .setFooter(`Automated Response from Openweathermap, WID:${id} from ${name}, ${country} Status Code: ${statusCode}`);
           await  message.channel.send(embed)
     }

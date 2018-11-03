@@ -1,15 +1,15 @@
 const Discord = require("discord.js");
-const settings = require('../settings.json')
+const settings = require('../settings.json');
 exports.run = async (Bot, message, args) => {
   let author = message.member;
   let offender = message.mentions.members.first() || message.guild.members.get(args[0]);
-  if(!offender) return message.reply("Enter user.")
+  if(!offender) return message.reply("Enter user.");
   let argument = args.join(" ");
    if(author.hasPermission("KICK_MEMBERS")) {
-        if(offender.kickable == false) return message.channel.send("You may not kick this person.").catch(console.error);
+        if(offender.kickable === false) return message.channel.send("You may not kick this person.").catch(console.error);
         // Kicking code starts HERE
-        offender.kick(argument).then(m => {
-          message.reply(`${m} has been kicked!`)
+        offender.kick(argument).then((m) => {
+          message.reply(`${m} has been kicked!`);
         }).catch(console.error);
 
 
@@ -21,4 +21,4 @@ exports.help = {
   category: "Moderation",
   alias: "None",
   permission: "KICK_MEMBERS"
-}
+};

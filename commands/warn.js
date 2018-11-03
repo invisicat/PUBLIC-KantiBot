@@ -7,7 +7,7 @@ exports.run = async (Bot, message, args) => {
   if(!offender) return message.reply("Enter user.")
   let argument = args[0].pop().join(" ");
    if(author.hasPermission("KICK_MEMBERS")) {
-        if(offender.hasPermission("ADMINISTRATOR") == true) return message.channel.send("You may not warn this person.").catch(console.error);
+        if(offender.hasPermission("ADMINISTRATOR") === true) return message.channel.send("You may not warn this person.").catch(console.error);
         // Kicking code starts HERE
         console.log(author)
         const key = `${offender.id}-${offender.user.username}-${offender.user.discriminator}`;

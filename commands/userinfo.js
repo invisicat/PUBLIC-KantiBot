@@ -1,7 +1,7 @@
 const Discord = require("discord.js")
 exports.run = async (Bot, message, args) => {
     let message_author = message.mentions.users.first() || message.guild.members.get(args[0]) || message.author;
-    if(message_author.bot == true) return message.reply("Dont try to fucking break the system faggot");
+    if(message_author.bot === true) return message.reply("Dont try to fucking break the system faggot");
       let id = message_author.id;
       let user = message_author;
       let avatar = user.avatarURL;
