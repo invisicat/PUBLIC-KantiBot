@@ -15,5 +15,6 @@ exports.help = {
   name: "minigames",
   category: "Fun",
   description: "Play games!",
-  alias: "None"
+  alias: "None",
+  permission: "None"
 }

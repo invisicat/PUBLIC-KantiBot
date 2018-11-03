@@ -19,5 +19,6 @@ exports.run = async (Bot, message, args) => {
 exports.help = {
   name: "ban",
   category: "Moderation",
-  alias: "None"
+  alias: "None",
+  permission: "BAN_MEMBERS"
 }

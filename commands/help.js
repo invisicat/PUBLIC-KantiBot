@@ -15,7 +15,8 @@ exports.run = async (Bot, message, args) => {
 
 exports.help = {
   name: "help",
-  category: "Economy",
+  category: "Help",
   description: "Displays all commands",
-  alias: "None"
+  alias: "None",
+  permission: "None"
 }

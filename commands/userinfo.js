@@ -13,14 +13,18 @@ exports.run = async (Bot, message, args) => {
         if(!presence.game) {
           game = "Not Playing..."
         }
-
+        const wkey = `${user.id}-${user.username}-${user.discriminator}`;
+        console.log(wkey)
+        if(!Bot.warnings.has(key)) {
+          Bot.warnings.set(key, 0)
+        }
       console.log(presence)
    let embed = await new Discord.RichEmbed()
       .setThumbnail(avatar)
       .setAuthor("Automated Response", avatar)
       .setTitle(`User Info for: ${message_author.username}`) // I would make the fields seperate lines but im a bit lazy to do that
       .addField("Basic Info",  `Username: ${message_author.username} \n \n ID: ${id} \n \n Discriminator: #${user.discriminator} \n \n Status: ${presence.status} \n \n Playing: ${game} \n \n Joined Discord On: ${user.createdAt} \n`)
-      .addField("Guild Specific", "Coming Soon!")
+      .addField("Guild Specific", `Warnings: ${Bot.warnings.get(wkey)}`)
       .addField("XP System", `Rank: PLACEHOLDER \n Level: ${Bot.xpDB.get(key, "level")} \n Points: ${Bot.xpDB.get(key, "points")}`)
       .setFooter("Automated Response.");
   message.channel.send(embed)
@@ -29,5 +33,6 @@ exports.run = async (Bot, message, args) => {
     name: "userinfo",
     category: "Economy",
     description: "Displays User Information",
-    alias: "None"
+    alias: "None",
+    permission: "None"
   }

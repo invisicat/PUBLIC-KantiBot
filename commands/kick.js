@@ -19,5 +19,6 @@ exports.run = async (Bot, message, args) => {
 exports.help = {
   name: "kick",
   category: "Moderation",
-  alias: "None"
+  alias: "None",
+  permission: "KICK_MEMBERS"
 }

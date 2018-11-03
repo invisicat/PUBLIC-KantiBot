@@ -15,5 +15,6 @@ exports.help = {
   name: "lipsum",
   category: "Developer",
   description: "Gives Shit",
-  alias: "None"
+  alias: "None",
+  permission: "ADMINISTRATOR"
 }

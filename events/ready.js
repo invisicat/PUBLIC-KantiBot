@@ -1,5 +1,7 @@
 const colors = require('colors');
-module.exports = (Bot, message, member) => {
+const functions = require('../modules/functions.js')
+module.exports = function (Bot, message, member) {
+  functions.key.administration('yo', 'yoe', 'yon', 'you', 'y', Bot)
   Bot.user.setPresence({
      game: {
        name: '&',

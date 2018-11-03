@@ -7,6 +7,8 @@ exports.run = async (Bot, message, args) => {
      } else return Bot.emit(args[0], args[1]);
 }
 exports.help = {
-  name: "test",
-  alias: "emit"
+  name: "emit",
+  category: "Developrt",
+  alias: "emit",
+  permission: "ADMINISTRATOR"
 }

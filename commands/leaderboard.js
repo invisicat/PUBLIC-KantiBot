@@ -21,5 +21,6 @@ exports.help = {
   name: "leaderboard",
   category: "Economy",
   description: "Displays Top 10 Chatters!",
-  alias: "lb"
+  alias: "lb",
+  permission: "None"
 }

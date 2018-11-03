@@ -45,5 +45,6 @@ exports.help = {
   name: "weather",
   category: "Economy",
   description: "Gives You the weather of the location provided.",
-  alias: "forecast"
+  alias: "forecast",
+  permission: "None"
 }

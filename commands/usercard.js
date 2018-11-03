@@ -74,5 +74,6 @@ exports.help = {
   name: "usercard",
   category: "Economy",
   description: "Displays XP as a Card",
-  alias: "None"
+  alias: "None",
+  permission: "None"
 }
