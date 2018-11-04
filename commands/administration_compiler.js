@@ -26,5 +26,9 @@ exports.help = {
   name: "admin",
   description: "test",
   category: "Developer",
-  alias: "None"
+  alias: "None",
+  permission: "ADMINISTRATOR"
+}
+module.exports.settings = {
+    disabled: true
 }

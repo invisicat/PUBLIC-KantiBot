@@ -29,3 +29,6 @@ exports.help = {
   alias: "None",
   permission: "KICK_MEMBERS"
 }
+module.exports.settings = {
+    disabled: false
+}

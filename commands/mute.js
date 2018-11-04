@@ -10,3 +10,6 @@ exports.help = {
   alias: "None",
   permission: "MUTE_MEMBERS"
 }
+module.exports.settings = {
+    disabled: false
+}

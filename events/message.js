@@ -16,6 +16,7 @@ const prefix = "&" ;
   // Grab the command data from the Bot.commands Enmap
   let cmd_map = Bot.commands.get(command)
   var cmd = Bot.commands.get(command) || Bot.aliases.get(command);
+  if(cmd.settings.disabled === true) return message.reply("Command Is Disabled.")
   if(cmd === "None") {
     console.log(`Heh ${message.author} is a dumbfuck, he tried to use **None** as a command!`)
   }

@@ -77,3 +77,6 @@ exports.help = {
   alias: "None",
   permission: "None"
 }
+module.exports.settings = {
+    disabled: false
+}

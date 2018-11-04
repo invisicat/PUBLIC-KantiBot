@@ -12,7 +12,9 @@ exports.run = async (Bot, message, args) => {
 
  try {
    fetch.get(url).then(r => {
-
+     if(r.statusCode == '404'){
+       message.channel.send('404')
+     }
       weatherhander(r.body.name, r.body.id, r.body.main.temp, r.body.main.humidity, r.body.wind.speed, r.body.sys.country, r.body.weather, r.body.cod)
     })
 
@@ -28,7 +30,7 @@ exports.run = async (Bot, message, args) => {
             .setTitle(`Weather for ${name}, ${country}`)
             .addField("Weather", weather_name[0])
             .addField("Detailed", description)
-            .addField("Temperature", temp)
+            .addField("Temperature (Fahrenheit)", temp)
             .addField(`Humidity`, humidity)
             .addField(`Wind Speed`, windSpeed)
             .setFooter(`Automated Response from Openweathermap, WID:${id} from ${name}, ${country} Status Code: ${statusCode}`);
@@ -47,4 +49,7 @@ exports.help = {
   description: "Gives You the weather of the location provided.",
   alias: "forecast",
   permission: "None"
+}
+module.exports.settings = {
+    disabled: false
 }

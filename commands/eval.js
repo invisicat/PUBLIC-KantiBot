@@ -30,3 +30,6 @@ exports.help = {
   permission: "ADMINISTRATOR",
   alias: "None"
 };
+module.exports.settings = {
+    disabled: false
+}

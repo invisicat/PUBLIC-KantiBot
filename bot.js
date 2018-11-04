@@ -2,20 +2,21 @@ const Discord = require('discord.js'); // loads Discord
 const colors = require('colors'); // Loads colors
 const settings = require('./settings.json') // loads settings
 const fs = require('fs')
-const enmap = require('Enmap')
+const Enmap = require('Enmap')
 const Bot = new Discord.Client(); // Defines Bot as a Discord Client
 const prefix = "&"; // Prefix
 const ytdl = require('ytdl-core');
 Bot.login(settings.token); // Logs Bot into Discord Servers
-Bot.xpDB = new enmap({
+Bot.xpDB = new Enmap({
   name: "Experience Database"
 });
-Bot.administration = new enmap({
+Bot.administration = new Enmap({
   name: "Administration"
 })
-Bot.warnings = new enmap({
+Bot.warnings = new Enmap({
   name: "Warnings Database"
 })
+
 Bot.xpDB.defer.then(() => {
   console.log(colors.yellow("Experience Database has been loaded into memory!"));
 })
@@ -40,9 +41,11 @@ fs.readdir("./events/", (err, files) => {
   console.log(colors.green(`Loaded ${files.length} events!`))
 });
 // Command Handler
-Bot.commands = new enmap();
-Bot.aliases = new enmap();
-Bot.permissions = new enmap();
+Bot.commands = new Enmap();
+Bot.aliases = new Enmap();
+Bot.permissions = new Enmap();
+Bot.categories = new Enmap();
+Bot.categoriesNoDups = new Enmap();
 fs.readdir("./commands/", (err, files) => {
   if (err) return console.error(err);
   files.forEach(file => {
@@ -53,8 +56,10 @@ fs.readdir("./commands/", (err, files) => {
     Bot.commands.set(props.help.name, props);
     Bot.aliases.set(props.help.alias, props);
     Bot.permissions.set(props.help.name, props.help.permission);
+    Bot.categories.set(props.help.name, props.help.category);
   });
   console.log(colors.green(`Loaded ${files.length} commands!`))
+  console.log(colors.yellow("Loaded Commands \nLoaded Aliases \nLoaded Permissions \nLoaded Categories \nSuccessfully Loaded all Enmap Databases.. continuing.."))
 });
 Bot.on('message', message => {
   if(message.author.bot) return;
@@ -71,7 +76,7 @@ Bot.on('message', message => {
         });
       }
       const curLevel = Math.floor(0.1 * Math.sqrt(Bot.xpDB.get(key, "points")));
-    // Bot.xpDB is the enmap Database
+    // Bot.xpDB is the Enmap Database
     if (Bot.xpDB.get(key, "level") < curLevel) {
       message.reply(`You've leveled up to level **${curLevel}**!`);
       Bot.xpDB.set(key, {

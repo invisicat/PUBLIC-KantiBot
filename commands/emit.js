@@ -8,7 +8,10 @@ exports.run = async (Bot, message, args) => {
 }
 exports.help = {
   name: "emit",
-  category: "Developrt",
+  category: "Developer",
   alias: "emit",
   permission: "ADMINISTRATOR"
+}
+module.exports.settings = {
+    disabled: false
 }

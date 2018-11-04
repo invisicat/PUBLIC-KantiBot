@@ -222,3 +222,6 @@ message.channel.send("Please wait.")
 module.exports.help = {
     name: "rank"
 }
+module.exports.settings = {
+    disabled: false
+}

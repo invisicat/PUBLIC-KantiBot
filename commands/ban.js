@@ -22,3 +22,6 @@ exports.help = {
   alias: "None",
   permission: "BAN_MEMBERS"
 }
+module.exports.settings = {
+    disabled: false
+}

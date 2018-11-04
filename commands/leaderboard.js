@@ -24,3 +24,6 @@ exports.help = {
   alias: "lb",
   permission: "None"
 }
+module.exports.settings = {
+    disabled: false
+}
