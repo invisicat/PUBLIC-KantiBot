@@ -3,9 +3,20 @@ const colors = require('colors'); // Loads colors
 const settings = require('./settings.json') // loads settings
 const fs = require('fs')
 const Enmap = require('Enmap')
-const Bot = new Discord.Client(); // Defines Bot as a Discord Client
+const Bot = new Discord.Client({
+  disabledEvents: [
+    'TYPING_START'
+  ]
+}); // Defines Bot as a Discord Client
 const prefix = "&"; // Prefix
 const ytdl = require('ytdl-core');
+const express = require('express');
+const siteInit = require('./dashboard/main.js')
+// Initalize Express
+siteInit.run('a', 'b', 'c');
+
+// Bot
+
 Bot.login(settings.token); // Logs Bot into Discord Servers
 Bot.xpDB = new Enmap({
   name: "Experience Database"
@@ -46,6 +57,7 @@ Bot.aliases = new Enmap();
 Bot.permissions = new Enmap();
 Bot.categories = new Enmap();
 Bot.categoriesNoDups = new Enmap();
+Bot.modules = new Enmap();
 fs.readdir("./commands/", (err, files) => {
   if (err) return console.error(err);
   files.forEach(file => {
@@ -61,6 +73,18 @@ fs.readdir("./commands/", (err, files) => {
   console.log(colors.green(`Loaded ${files.length} commands!`))
   console.log(colors.yellow("Loaded Commands \nLoaded Aliases \nLoaded Permissions \nLoaded Categories \nSuccessfully Loaded all Enmap Databases.. continuing.."))
 });
+fs.readdir("./modules/", (err, f) => {
+  console.log(colors.yellow("Loading Modules.."))
+  if(err) return console.log(err);
+  f.forEach(f => {
+    if(!f.endsWith(".js")) return;
+    let moduleProps = require(`./modules/${f}`);
+    let moduleName = f.split('.')[0];
+    console.log(`Loaded module: ${moduleName}`);
+    Bot.modules.set(moduleName, moduleProps) // VERY IMPORTANT... MODULE NAME NEEDS TO BE EXACT.
+  })
+})
+
 Bot.on('message', message => {
   if(message.author.bot) return;
   if(message.guild) {
@@ -75,19 +99,19 @@ Bot.on('message', message => {
           level: 1
         });
       }
-      const curLevel = Math.floor(0.1 * Math.sqrt(Bot.xpDB.get(key, "points")));
+      Bot.curLevel = Math.floor(0.1 * Math.sqrt(Bot.xpDB.get(key, "points")));
+      //console.log(`Curlevel: ${Bot.curLevel}- User Level: ${Bot.xpDB.get(key, "level")}`)
     // Bot.xpDB is the Enmap Database
-    if (Bot.xpDB.get(key, "level") < curLevel) {
-      message.reply(`You've leveled up to level **${curLevel}**!`);
+    if (Bot.xpDB.get(key, "level") < Bot.curLevel) {
+      message.reply(`You've leveled up to level **${Bot.curLevel}**!`);
       Bot.xpDB.set(key, {
         user: message.author.id,
         guild: message.guild.id,
         points: 0,
-        level: curLevel
+        level: Bot.curLevel
       });
     }
 //      console.log(user)
-
     Bot.xpDB.ensure(key, {
     user: message.author.id,
     guild: message.guild.id,
@@ -98,7 +122,10 @@ Bot.on('message', message => {
   }
 })
 
+// Interesting Modules..
 
-
+Bot.ranHex = function() {
+  '#' + Math.random().toString(16).slice(2, 8).toUpperCase();
+}
 
 process.on('unhandledRejection', error => console.error('Uncaught Promise Rejection', error));

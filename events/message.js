@@ -1,6 +1,7 @@
-const Util = require('discord.js')
-const ytdl = require('ytdl-core')
-const colors = require('colors')
+const Util = require('discord.js');
+const ytdl = require('ytdl-core');
+const colors = require('colors');
+const settings = require('../settings.json')
 module.exports = (Bot, message, member) => {
 const prefix = "&" ;
   // Ignore all bots
@@ -16,13 +17,14 @@ const prefix = "&" ;
   // Grab the command data from the Bot.commands Enmap
   let cmd_map = Bot.commands.get(command)
   var cmd = Bot.commands.get(command) || Bot.aliases.get(command);
-  if(cmd.settings.disabled === true) return message.reply("Command Is Disabled.")
   if(cmd === "None") {
     console.log(`Heh ${message.author} is a dumbfuck, he tried to use **None** as a command!`)
   }
   if (!cmd) return message.reply("That is not a valid command.");
+    if(cmd.settings.disabled === true) return message.reply("Command Is Disabled.")
   if(cmd.help.permission == 'None') {
-    console.log("CONTINUING EXECUTION")
+  } else if(cmd.help.permission == "OwnerBot") {
+    if(message.author.id != settings.OwnerID) return message.channel.send("Only the Bot Owner can use the command... Debug: Code exited code **1**");
   } else if(message.member.hasPermission(cmd.help.permission) === false) {
     return message.channel.send("You do not have permission to execute this command").catch(console.error)
   }

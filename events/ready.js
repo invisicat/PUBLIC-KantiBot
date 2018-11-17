@@ -23,7 +23,12 @@ module.exports = function (Bot, message, member) {
 		return arr.indexOf(item) >= index;
 	});
 };
+
   Bot.categoryArr = arrayUnique(arr).join(' , ')
   //console.log(Bot.categoryArr)
     //  console.log(arrayUnique(arr))
+
+
+
+
 };

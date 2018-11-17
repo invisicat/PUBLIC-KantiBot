@@ -1,0 +1,35 @@
+.nav {
+  position: sticky;
+  left: 60%;
+  top: 3px;
+  background: #24292e;
+}
+
+.nav ul {
+  list-style: none;
+  color: white;
+  opacity: 1;
+}
+.nav ul li {
+  list-style: none;
+  display: inline-block;
+  font-family: Arial;
+  padding: 5px 140px;
+  transition: 1s ease-in-out;
+}
+.nav ul li:hover {
+  list-style: none;
+  display: inline-block;
+  font-family: Arial;
+  padding: 5px 140px;
+  background: white;
+  color: #24292e;
+  cursor: pointer;
+}
+body {
+  background-image: url('http://s1.picswalls.com/wallpapers/2017/12/10/4k-backgrounds_110627244_312.jpg');
+  background-repeat: no-repeat;
+}
+h1.header {
+  color: #6d0fe6;
+}

@@ -34,6 +34,13 @@ const { body: avatar } = await get(member.user.displayAvatarURL.replace(imageUrl
 // The reason for the displayName length check, is we don't want the name of the user going outside
 // the box we're going to be making later, so we grab all the characters from the 0 index through
 // to the 17th index and cut the rest off, then append `...`.
+const key = `${message.guild.id}-${message.author.id}`
+const skeetSheet = Math.floor(0.1 * Math.sqrt(Bot.xpDB.get(key, "points")));
+//console.log(skeetSheet)
+const oof = Bot.xpDB.get(key, "points") * 100;
+console.log(oof)
+const sS2 =  Math.floor(Bot.xpDB.get(key, "points") / oof * 400);
+//console.log(sS2)
 const name = member.displayName.length > 20 ? member.displayName.substring(0, 17) + "..." : member.displayName;
 return new Canvas(934, 282)
     .setColor("#2C2F33")// Gray
@@ -43,7 +50,9 @@ return new Canvas(934, 282)
     .save()
     .restore()
     .setColor("#2C2F33")
-    .addBeveledRect(250, 151, 400, 30, 60)
+    .addBeveledRect(250, 151, 400, 30, 60) // xp?
+    .setColor("rgb(229, 247, 32)")
+    .addBeveledRect(250, 151, sS2, 30, 60)
     .save()
     .restore()
     .setColor("#FFFFFF")

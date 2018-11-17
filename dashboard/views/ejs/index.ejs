@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+     <link href="css/indexStyle.css" rel="stylesheet" type="text/css">
+    <title>Kanti Bot - Home</title>
+  </head>
+<script>
+function login() {
+  window.location.replace("/api/discord/login")
+}
+
+</script>
+  <body>
+    <div class="header">
+      <h1 class="header" align='center'>Kanti Bot</h1>
+    </div>
+    <div class="nav">
+      <ul>
+        <li>HOME</li>
+        <li>ABOUT</li>
+        <li>CONTACT</li>
+        <li onclick="login()"> LOGIN</li>
+  </ul>
+    </div>
+
+  </body>
+</html>
